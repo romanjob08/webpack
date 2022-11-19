@@ -1,6 +1,4 @@
 export default class Post {
-    // title: string;
-    // date: Date;
     constructor(title) {
         this.title = title
         this.date = new Date()
@@ -9,7 +7,11 @@ export default class Post {
     toString() {
         return JSON.stringify({
             title: this.title,
-            date: this.date.toJSON()
-        })
+            date: this.date.toJSON(),
+        }, null,2)
+    }
+
+    get uppercaseTitle() {
+        return this.title.toUpperCase()
     }
 }

@@ -1,15 +1,17 @@
+import * as $ from 'jquery'
+
 const createAnalytics = () => {
     let counter = 0
-    let isDestroyed = false
+    let destroyed = false
 
     const listener = () => counter++
 
-    document.addEventListener('click', listener)
+    $(document).on('click', listener)
 
     return {
         destroy() {
-            document.removeEventListener('click', listener)
-            isDestroyed = true
+            $(document).off('click', listener)
+            destroyed = true
         },
 
         getClicks() {
@@ -17,7 +19,7 @@ const createAnalytics = () => {
             //     return 'Analytics is destroyed'
             // }
             // return counter
-            return isDestroyed ? `Analytics is destroyed. Total click = ${counter}` : counter
+            return destroyed ? `Analytics is destroyed. Total click = ${counter}` : counter
         }
     }
 }
